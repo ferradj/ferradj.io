@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle LED - Fond Vert</title>
+    <style>
+        body { 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            background-image: url('https://www.solidbackgrounds.com/images/1920x1080/1920x1080-green-solid-color-background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .on { background: green; color: white; }
+        .off { background: red; color: white; }
+        button:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+    <h1>Contrôle LED avec ESP32</h1>
+    
+    <div>
+        <button class="on" onclick="toggleLED('on')">Allumer</button>
+        <button class="off" onclick="toggleLED('off')">Éteindre</button>
+    </div>
+
+    <script>
+        function toggleLED(state) {
+            fetch('/led/' + state)
+            .then(response => console.log("Commande envoyée:", state))
+            .catch(error => console.error("Erreur:", error));
+        }
+    </script>
+</body>
+</html>
